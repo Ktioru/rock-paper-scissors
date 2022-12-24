@@ -3,6 +3,11 @@ const paper = document.querySelector(".paper")
 const scissors = document.querySelector(".scissors")
 const scoreboard = document.querySelector(".scoreboard")
 const result = document.querySelector(".result")
+const title = document.querySelector("h2")
+const hidden_button = document.createElement("button")
+const main = document.querySelector("main")
+hidden_button.textContent = "Play Again"
+hidden_button.className = "hidden-button"
 let win = 0
 let lose = 0
 
@@ -19,6 +24,37 @@ function getComputersChoice() {
             return "scissors"
     }
     
+}
+
+function disableButtons() {
+
+    if (win == 5 || lose == 5) {
+        title.textContent = "Game finished!"
+        rock.disabled = true
+        paper.disabled = true
+        scissors.disabled = true
+        main.appendChild(hidden_button)
+    }
+    
+    if (win == 5) {
+        result.textContent = "You Win!"
+        
+
+    } else if (lose == 5) {
+        result.textContent = "You Lose!"
+        
+    }
+}
+
+function enableButtons() {
+    title.textContent = "Choose your weapon!"
+    result.textContent = ""
+    scoreboard.textContent = ""
+    rock.disabled = false
+    paper.disabled = false
+    scissors.disabled = false
+    main.removeChild(hidden_button)
+    win = lose = 0
 }
 
 function playOneRound(playersChoice) {
@@ -77,10 +113,15 @@ function playOneRound(playersChoice) {
 
         }
     }
-     
+    
+
 }
 
-
-rock.addEventListener("click", () => playOneRound("rock"))
-paper.addEventListener("click", () => playOneRound("paper"))
-scissors.addEventListener("click", () => playOneRound("scissors"))
+function game(playersChoice) {
+    playOneRound(playersChoice)
+    disableButtons()
+}
+rock.addEventListener("click", () => game("rock"))
+paper.addEventListener("click", () => game("paper"))
+scissors.addEventListener("click", () => game("scissors"))
+hidden_button.addEventListener("click", () => enableButtons())

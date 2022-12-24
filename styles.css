@@ -10,6 +10,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: #353535;
+    color: #FFFFFF;
+   
 
 }
 
@@ -18,17 +21,56 @@ header {
     justify-content: center;
     align-items: center;
     padding: 10px;
+    background-color: #353535;
+
+    
 }
 
 main {
+    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 32px;
     align-items: center;
+    
+}
+
+button {
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #8D8E8E;
+    border: 2px solid black;
+    color: #FFFFFF;
+    text-align: center;
+    
+}
+
+.buttons {
+    display: flex;
+    gap: 32px;
+}
+
+.buttons button {
+    width: 100px;
+    height: 100px;
+    font-size: 64px;
+    
+}
+.text {
+    text-align: center;
+}
+
+.hidden-button {
+    font-size: 16px;
 }
 
 footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+a {
+    color: #FFFFFF;
 }
