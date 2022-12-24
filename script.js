@@ -1,7 +1,10 @@
-function getPlayersChoice() {
-    let choice = prompt("Choose rock, paper or Scissors")
-    return choice.toLowerCase()
-}
+const rock = document.querySelector(".rock")
+const paper = document.querySelector(".paper")
+const scissors = document.querySelector(".scissors")
+const scoreboard = document.querySelector(".scoreboard")
+const result = document.querySelector(".result")
+let win = 0
+let lose = 0
 
 function getComputersChoice() {
     let choice = Math.floor(Math.random() * 3) + 1
@@ -18,72 +21,66 @@ function getComputersChoice() {
     
 }
 
-function playOneRound(playersChoice, computersChoice) {
+function playOneRound(playersChoice) {
+    let computersChoice = getComputersChoice()
     if (playersChoice == "rock") {
         if (computersChoice == "rock") {
-            console.log("It's a tie!")
+            result.textContent = "It's a tie!"
+            scoreboard.textContent = `${win} - ${lose}`
 
         } else if (computersChoice == "paper") {
-            console.log("You lose! Paper beats rock!")
+            result.textContent = `You lose! Paper beats rock!`
+            lose += 1
+            scoreboard.textContent = `${win} - ${lose}`
             return "lose"
 
         } else if (computersChoice == "scissors") {
-            console.log("You Win! Rock beats scissors!")
+            result.textContent = "You Win! Rock beats scissors!"
+            win += 1
+            scoreboard.textContent = `${win} - ${lose}`
             return "win"
         }
     }  else if (playersChoice == "paper") {
         if (computersChoice == "paper") {
-            console.log("It's a tie!")
+            result.textContent = "It's a tie!"
+            scoreboard.textContent = `${win} - ${lose}`
 
         } else if (computersChoice == "rock") {
-            console.log("You Win! Paper beats rock!")
+            result.textContent = "You Win! Paper beats rock!"
+            win += 1
+            scoreboard.textContent = `${win} - ${lose}`
             return "win"
 
         } else if (computersChoice == "scissors") {
-            console.log("You Lose! Scissors beats paper!")
+            result.textContent = "You Lose! Scissors beats paper!"
+            lose += 1
+            scoreboard.textContent = `${win} - ${lose}`
             return "lose"
 
         }
     }  else if (playersChoice == "scissors") {
         if (computersChoice == "scissors") {
-            console.log("It's a tie!")
+            result.textContent = "It's a tie!"
+            scoreboard.textContent = `${win} - ${lose}`
 
         } else if (computersChoice == "rock") {
-            console.log("You Lose! Rock beats scissors!")
+            result.textContent = "You Lose! Rock beats scissors!"
+            lose += 1
+            scoreboard.textContent = `${win} - ${lose}`
             return "lose"
 
         } else if (computersChoice == "paper") {
-            console.log("You Win! Scissors beats paper!")
+            result.textContent = "You Win! Scissors beats paper!"
+            win += 1
+            scoreboard.textContent = `${win} - ${lose}`
             return "win"
 
         }
-    } 
+    }
+     
 }
 
-function game() {
-    let playerPoints = 0
-    let computerPoints = 0
-    for (let i = 0; i < 5; i++) {
-        let result = playOneRound(getPlayersChoice(), getComputersChoice())
-        if (result == "win") {
-            playerPoints ++
-            
 
-        } else if (result == "lose") {
-            computerPoints ++
-            
-        }
-        
-    }
-    console.log(`Final Scoreboard: ${playerPoints} - ${computerPoints}`)
-    if (playerPoints > computerPoints) {
-        console.log("You Won!")
-    } else if (playerPoints < computerPoints) {
-        console.log("You Lost!")
-    } else if  (playerPoints == computerPoints) {
-        console.log("You tied with the computer!")
-    }
-    
-}
-
-game()
+rock.addEventListener("click", () => playOneRound("rock"))
+paper.addEventListener("click", () => playOneRound("paper"))
+scissors.addEventListener("click", () => playOneRound("scissors"))
